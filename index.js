@@ -1,17 +1,18 @@
 let score = 0;
 let lives = 3;
-document.addEventListener('keyup', event => {
-  
-  const currentAlphabet = document.getElementById("currentAlphabet").innerText.toLowerCase();
-  if(currentAlphabet === event.key){
-    score ++;
-  }else{
+document.addEventListener("keyup", (event) => {
+  const currentAlphabet = document
+    .getElementById("currentAlphabet")
+    .innerText.toLowerCase();
+  if (currentAlphabet === event.key) {
+    score++;
+  } else {
     lives--;
   }
   setClassById("play-ground", "hidden");
   removeClassById("play-ground", "hidden");
   // console.log(score, lives);
-})
+});
 
 function continueGame() {
   const rendomLetter = getARandomAlphabet();
@@ -25,7 +26,6 @@ function continueGame() {
   //   ? removeClassById(lastRedomLatter, "bg-orange-400")
   //   : null;
   // lastRedomLatter = rendomLetter;
-
 }
 
 // Play function is being called from home page

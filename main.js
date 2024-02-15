@@ -21,9 +21,9 @@ function handleKeyupEvent(e) {
     // 3. show the life
     setTextContentById("current-life", updatedLife);
     //   showing score section
-    if (updatedLife < 1) {
-      setClassById("play-ground", "hidden");
-      removeClassById("score", "hidden");
+    if (updatedLife < 1 || e.key === 'Escape') {
+      removeClassById(currentAlphabet, "bg-orange-400");
+      gameOver();
     }
   }
 }
@@ -38,7 +38,20 @@ function continueGame() {
 }
 
 function play() {
+  // hide all section without playground
   setClassById("home", "hidden");
+  setClassById("score", "hidden");
   removeClassById("play-ground", "hidden");
+  //   resetting the value of life and score
+  setTextContentById("current-life", 3);
+  setTextContentById("current-score", 0);
   continueGame();
+}
+
+function gameOver() {
+  setClassById("play-ground", "hidden");
+  removeClassById("score", "hidden");
+  // setting final score
+  const finalScore = getTextContentById("current-score");
+  setTextContentById("final-score", finalScore);
 }

@@ -107,7 +107,8 @@
           <button
             class="btn rounded-[30px] w-[170px] h-[56px] text-xl bg-[#894189] text-white border-none"
           >
-            life <img src="images/lives.svg" alt="" /> <span id="current-life">3</span>
+            life <img src="images/lives.svg" alt="" />
+            <span id="current-life">3</span>
           </button>
           <button
             class="btn rounded-[30px] w-[170px] h-[56px] text-xl bg-[#360490] text-white border-none"
@@ -118,15 +119,16 @@
       </section>
 
       <!-- score section  -->
-      <div id="score"
+      <div
+        id="score"
         class="hidden text-white flex justify-center items-center min-h-screen"
       >
         <div class="bg-[#FFFFFF8F] p-6 rounded-md text-center space-y-6">
           <h1 class="text-6xl">
             <samp class="font-extrabold">Score:</samp>
-            <samp>14</samp>
+            <samp id="final-score">14</samp>
           </h1>
-          <button class="btn">Play Again</button>
+          <button onclick="play()" class="btn">Play Again</button>
           <p>Practice will make you pro</p>
         </div>
       </div>

@@ -1,9 +1,9 @@
-function getTextContentById(id){
+function getTextContentById(id) {
   const innerText = document.getElementById(id).textContent;
   return innerText;
 }
 
-function setTextContentById(id, content){
+function setTextContentById(id, content) {
   document.getElementById(id).textContent = content;
 }
 
@@ -18,6 +18,6 @@ function removeClassById(id, className) {
 }
 
 function getARandomAlphabet() {
-  const allAlphabets = "abcdefghijklmnopqrstuvwxyz"; // why should i split it as i can get every letter by index from string also? 
+  const allAlphabets = "abcdefghijklmnopqrstuvwxyz"; // why should i split it as i can get every letter by index from string also?
   return allAlphabets[Math.round(Math.random() * 25)];
 }
