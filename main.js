@@ -1,8 +1,16 @@
+const successMsg = new Audio();
+successMsg.src = "../audio/success.mp3";
+const errorMsg = new Audio();
+errorMsg.src = "../audio/error.wav";
+let isPlayOn = false;
+
+const artBoard = document.getElementById('art-board');
+
 function handleKeyupEvent(e) {
+  if (!isPlayOn) return;
   const currentAlphabet = document
     .getElementById("currentAlphabet")
     .innerText.toLowerCase();
-  // console.log(e.key, currentAlphabet)adsf
   if (e.key === currentAlphabet) {
     removeClassById(currentAlphabet, "bg-orange-400");
     continueGame();
@@ -13,6 +21,7 @@ function handleKeyupEvent(e) {
     const newScore = currentScore + 1;
     // 3. show the score in dom
     setTextContentById("current-score", newScore);
+    successMsg.play();
   } else {
     // 1. get the current life
     const currentLife = parseInt(getTextContentById("current-life"));
@@ -20,8 +29,12 @@ function handleKeyupEvent(e) {
     const updatedLife = currentLife - 1;
     // 3. show the life
     setTextContentById("current-life", updatedLife);
+    errorMsg.play();
+    // color change of art board 
+    const updatedLifePercentage = (updatedLife/5) * 100;
+    artBoard.style.background =  `linear-gradient(to bottom, #fffc ${updatedLifePercentage}%, red)`;
     //   showing score section
-    if (updatedLife < 1 || e.key === 'Escape') {
+    if (updatedLife < 1 || e.key === "Escape") {
       removeClassById(currentAlphabet, "bg-orange-400");
       gameOver();
     }
@@ -35,6 +48,7 @@ function continueGame() {
   const currentAlphabet = document.getElementById("currentAlphabet");
   currentAlphabet.innerText = randomAlphabet;
   setClassById(randomAlphabet, "bg-orange-400");
+  isPlayOn = true;
 }
 
 function play() {
@@ -43,7 +57,7 @@ function play() {
   setClassById("score", "hidden");
   removeClassById("play-ground", "hidden");
   //   resetting the value of life and score
-  setTextContentById("current-life", 3);
+  setTextContentById("current-life", 5);
   setTextContentById("current-score", 0);
   continueGame();
 }
@@ -54,4 +68,12 @@ function gameOver() {
   // setting final score
   const finalScore = getTextContentById("current-score");
   setTextContentById("final-score", finalScore);
+  isPlayOn = false;
+  artBoard.style.background = 'linear-gradient(to bottom, #fffc 100%, red)'
 }
+
+// Modal section 
+function modalOpen(e){
+  console.log(e.clientY)
+}
+document.body.onmouseover = modalOpen;
